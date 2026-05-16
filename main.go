@@ -11,12 +11,12 @@ import (
 )
 
 func main() {
-	dsn := os.Getenv("DATABASE_URL")
-	if dsn == "" {
-		dsn = "host=localhost user=postgres password=postgres dbname=expenses port=5432 sslmode=disable"
+	mongoURI := os.Getenv("MONGODB_URI")
+	if mongoURI == "" {
+		mongoURI = "mongodb://localhost:27017"
 	}
 
-	db, err := database.Connect(dsn)
+	db, err := database.Connect(mongoURI)
 	if err != nil {
 		log.Fatalf("Failed to connect to database: %v", err)
 	}
